@@ -15,8 +15,6 @@ jobs:
         run: echo "This is a test:${GITHUB_REF##*/}"
   build:
     runs-on: ubuntu-latest
-    outputs:
-      image: ${{steps.tagout.outputs.image}}
     steps:
       - uses: actions/checkout@v2
       - uses: kciter/aws-ecr-action@master
@@ -26,6 +24,6 @@ jobs:
           account_id: ${{ secrets.AWS_ACCOUNT_ID}}
           repo: hello_world
           path: ./
-          tags: "${GITHUB_REF##*/}",latest
+          tags: ${GITHUB_REF##*/},latest
           region: us-east-1
           create_repo: true
