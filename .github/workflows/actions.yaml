@@ -12,5 +12,5 @@ jobs:
       - name: Print just branch/tag
         run: echo ${GITHUB_REF##*/}
       - name: Print ref as part of something
-        run: echo "::set-output name=image::210848359856.dkr.ecr.us-east-1.amazonaws.com/dev-onstage:${GITHUB_REF$$/}"
+        run: echo "::set-output name=image::210848359856.dkr.ecr.us-east-1.amazonaws.com/dev-onstage:${GITHUB_REF##*/}"
 
