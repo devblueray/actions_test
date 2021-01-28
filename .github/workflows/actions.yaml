@@ -11,8 +11,21 @@ jobs:
         run: echo $GITHUB_REF
       - name: Print just branch/tag
         run: echo ${GITHUB_REF##*/}
-      - name: Print ref as part of something
-        run: echo "::set-output name=image::210848359856.dkr.ecr.us-east-1.amazonaws.com/dev-onstage:${GITHUB_REF##*/}"
       - name: new echo
         run: echo "This is a test:${GITHUB_REF##*/}"
-
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{steps.tagout.outputs.image}}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: kciter/aws-ecr-action@master
+        with:
+          access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          account_id: ${{ secrets.AWS_ACCOUNT_ID}}
+          repo: hello_world
+          path: ./
+          tags: ${GITHUB_REF##*/},latest
+          region: us-east-1
+          create_repo: true
