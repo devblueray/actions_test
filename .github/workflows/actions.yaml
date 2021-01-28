@@ -26,6 +26,6 @@ jobs:
           account_id: ${{ secrets.AWS_ACCOUNT_ID}}
           repo: hello_world
           path: ./
-          tags: ${GITHUB_REF##*/},latest
+          tags: "${GITHUB_REF##*/}",latest
           region: us-east-1
           create_repo: true
