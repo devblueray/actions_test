@@ -28,6 +28,6 @@ jobs:
           account_id: ${{ secrets.AWS_ACCOUNT_ID}}
           repo: hello_world
           path: ./
-          tags: $TAGNAME,latest
+          tags: 0.0.1
           region: us-east-1
           create_repo: true
