@@ -7,3 +7,7 @@ jobs:
     steps:
       - name: Print Ref
         run: echo $GITHUB_REF
+      - uses: actions/checkout@v2
+      - name: Print hello file
+        run: cat hello
+        
