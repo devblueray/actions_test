@@ -10,4 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Print hello file
         run: cat hello
-        
+      - name: Get tag 
+        run: echo "TAGNAME=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
+      - name: Print Tag
+        run: echo "gcr.io/${{env.TAGNAME}}"
