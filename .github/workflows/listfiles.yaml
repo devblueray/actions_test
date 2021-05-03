@@ -1,6 +1,6 @@
 name: List Files
 on:
-  workflow_dispatch
+  push
 jobs:
   list_files:
     runs-on: ubuntu-latest
