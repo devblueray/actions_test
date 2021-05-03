@@ -5,8 +5,8 @@ jobs:
   list_files:
     runs-on: ubuntu-latest
     steps:
-      - id: files
-        uses: jitterbit/get-changed-files@v1
-        with:
-          format: 'json'
-      run: echo ${{ steps.files.outputs.added_modified}}
+    - id: files
+      uses: jitterbit/get-changed-files@v1
+      with:
+        format: 'json'
+    run: echo ${{ steps.files.outputs.added_modified}}
