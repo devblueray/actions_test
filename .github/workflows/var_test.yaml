@@ -12,6 +12,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps: 
+      - name: Print ID
+        run: echo ${{ github.events.inputs.id }}
       - name: Set namespace to provided
         run: echo "NAMESPACE=${{ github.events.inputs.id }}" >> $GITHUB_ENV
         if: ${{ github.events.inputs.id != '' }}
