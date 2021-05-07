@@ -8,7 +8,7 @@ on:
       depname:
         description: "Deployment Name"
         required: false
-        default: ''
+        default: 'ssm'
 jobs: 
   deploy:
     runs-on: ubuntu-latest
@@ -17,9 +17,9 @@ jobs:
         run: echo ${{ github.events.inputs.depname }}
       - name: Set namespace to provided
         run: echo "NAMESPACE=${{ github.events.inputs.depname }}" >> $GITHUB_ENV
-        if: ${{ github.events.inputs.depname != '' }}
+        if: ${{ github.events.inputs.depname != 'ssm' }}
       - name: Get tag 
         run: echo "NAMESPACE=$(echo v${GITHUB_SHA} | fold -w 4 | head -n 1)" >> $GITHUB_ENV
-        if: ${{ github.events.inputs.depname == '' }}
+        if: ${{ github.events.inputs.depname == 'ssm' }}
       - name: Print Namespace
         run: echo ${{env.NAMESPACE}}
