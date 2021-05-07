@@ -1,6 +1,6 @@
 name: QA Preview Environment
 on: 
-  repository_dispatch:
+  workflow_dispatch:
     inputs:
       version:
         description: "Hash to deploy"
