@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Print ID
-        run: echo ${{ github.events.inputs.depname }}
+        run: echo 'Current Var is: ${{ github.events.inputs.depname }}'
       - name: Set namespace to provided
         run: echo "NAMESPACE=${{ github.events.inputs.depname }}" >> $GITHUB_ENV
         if: ${{ github.events.inputs.depname != 'ssm' }}
