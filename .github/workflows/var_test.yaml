@@ -5,7 +5,7 @@ on:
       version:
         description: "Hash to deploy"
         required: true
-      id:
+      depname:
         description: "Deployment Name"
         required: false
 jobs: 
@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Print ID
-        run: echo ${{ github.events.inputs.id }}
+        run: echo ${{ github.events.inputs.depname }}
       - name: Set namespace to provided
-        run: echo "NAMESPACE=${{ github.events.inputs.id }}" >> $GITHUB_ENV
-        if: ${{ github.events.inputs.id != '' }}
+        run: echo "NAMESPACE=${{ github.events.inputs.depname }}" >> $GITHUB_ENV
+        if: ${{ github.events.inputs.depname != '' }}
       - name: Get tag 
         run: echo "NAMESPACE=$(echo v${GITHUB_SHA} | fold -w 4 | head -n 1)" >> $GITHUB_ENV
-        if: ${{ github.events.inputs.id == '' }}
+        if: ${{ github.events.inputs.depname == '' }}
       - name: Print Namespace
         run: echo ${{env.NAMESPACE}}
