@@ -1,0 +1,20 @@
+name: QA Preview Environment
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Hash to deploy"
+        required: true
+      id:
+        description: "Deployment Name"
+        required: false
+ deploy:
+    needs: build_and_push
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Set namespace to provided
+        run: echo "NAMESPACE=${{ github.events.inputs.id }}" >> $GITHUB_ENV
+        if: ${{ github.events.inputs.id == '' }}
+      - name: Get tag 
+        run: echo "NAMESPACE=$(echo v${GITHUB_SHA} | fold -w 4 | head -n 1)" >> $GITHUB_ENV
+        if: ${{ github.events.inputs.id == '' }}
