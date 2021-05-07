@@ -8,7 +8,8 @@ on:
       id:
         description: "Deployment Name"
         required: false
- deploy:
+jobs: 
+  deploy:
     needs: build_and_push
     runs-on: ubuntu-latest
     steps: 
