@@ -14,14 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print ID
-        run: echo "ID is ${{ github.events.inputs.depname }}"
+        run: echo "ID is ${{ github.event.inputs.depname }}"
       - name: Print Hash
-        run: echo "${{ github.events.iinputs.version }}"
+        run: echo "${{ github.event.inputs.version }}"
       - name: Set namespace to provided
-        run: echo "NAMESPACE=${{ github.events.inputs.depname }}" >> $GITHUB_ENV
+        run: echo "NAMESPACE=${{ github.event.inputs.depname }}" >> $GITHUB_ENV
         if: ${{ github.events.inputs.depname != 'ssm' }}
       - name: Get tag 
         run: echo "NAMESPACE=$(echo v${GITHUB_SHA} | fold -w 4 | head -n 1)" >> $GITHUB_ENV
-        if: ${{ github.events.inputs.depname == 'ssm' }}
+        if: ${{ github.event.inputs.depname == 'ssm' }}
       - name: Print Namespace
         run: echo ${{env.NAMESPACE}}
