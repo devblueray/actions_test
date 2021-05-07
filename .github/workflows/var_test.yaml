@@ -14,7 +14,7 @@ jobs:
     steps: 
       - name: Set namespace to provided
         run: echo "NAMESPACE=${{ github.events.inputs.id }}" >> $GITHUB_ENV
-        if: ${{ github.events.inputs.id == '' }}
+        if: ${{ github.events.inputs.id != '' }}
       - name: Get tag 
         run: echo "NAMESPACE=$(echo v${GITHUB_SHA} | fold -w 4 | head -n 1)" >> $GITHUB_ENV
         if: ${{ github.events.inputs.id == '' }}
