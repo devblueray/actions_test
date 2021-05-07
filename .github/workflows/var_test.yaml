@@ -18,3 +18,5 @@ jobs:
       - name: Get tag 
         run: echo "NAMESPACE=$(echo v${GITHUB_SHA} | fold -w 4 | head -n 1)" >> $GITHUB_ENV
         if: ${{ github.events.inputs.id == '' }}
+      - name: Print Namespace
+        run: echo ${{env.NAMESPACE}}
