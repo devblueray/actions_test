@@ -10,7 +10,6 @@ on:
         required: false
 jobs: 
   deploy:
-    needs: build_and_push
     runs-on: ubuntu-latest
     steps: 
       - name: Set namespace to provided
