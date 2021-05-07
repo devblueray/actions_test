@@ -6,9 +6,9 @@ on:
         description: "Hash to deploy"
         required: true
       depname:
-        description: "Deployment Name"
+        description: "Deployment Prefix"
         required: false
-        default: 'ssm'
+        default: ''
 jobs: 
   deploy:
     runs-on: ubuntu-latest
@@ -19,9 +19,9 @@ jobs:
         run: echo "${{ github.event.inputs.version }}"
       - name: Set namespace to provided
         run: echo "NAMESPACE=${{ github.event.inputs.depname }}" >> $GITHUB_ENV
-        if: ${{ github.events.inputs.depname != 'ssm' }}
+        if: ${{ github.events.inputs.depname != '' }}
       - name: Get tag 
         run: echo "NAMESPACE=$(echo v${GITHUB_SHA} | fold -w 4 | head -n 1)" >> $GITHUB_ENV
-        if: ${{ github.event.inputs.depname == 'ssm' }}
+        if: ${{ github.event.inputs.depname == '' }}
       - name: Print Namespace
         run: echo ${{env.NAMESPACE}}
