@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print ID
-        run: echo "ID is ${{ inputs.depname }}"
+        run: echo "ID is ${{ github.events.inputs.depname }}"
+      - name: Print Hash
+        value: echo "${{ github.events.iinputs.version }}"
       - name: Set namespace to provided
         run: echo "NAMESPACE=${{ github.events.inputs.depname }}" >> $GITHUB_ENV
         if: ${{ github.events.inputs.depname != 'ssm' }}
