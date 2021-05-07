@@ -12,7 +12,9 @@ on:
 jobs: 
   deploy:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
+      - name: Print ID
+        run: echo "ID is ${{ github.events.inputs.depname }}"
       - name: Set namespace to provided
         run: echo "NAMESPACE=${{ github.events.inputs.depname }}" >> $GITHUB_ENV
         if: ${{ github.events.inputs.depname != 'ssm' }}
