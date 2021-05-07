@@ -8,6 +8,7 @@ on:
       depname:
         description: "Deployment Name"
         required: false
+        default: ''
 jobs: 
   deploy:
     runs-on: ubuntu-latest
