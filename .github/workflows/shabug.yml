@@ -1,0 +1,17 @@
+name: SHA Test
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Hash to deploy"
+        required: true
+      depname:
+        description: "Deployment Prefix"
+        required: false
+        default: ''
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print SHA
+        run: echo "SHA is ${{ github.sha }}"
