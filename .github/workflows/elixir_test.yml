@@ -1,0 +1,10 @@
+name: Elixir Build
+on: 
+  push
+
+jobs: 
+  deploy:
+    runs-on: 
+    steps:
+      - name: Print SHA
+        run: echo "SHA is ${{$GITHUB_SHA}}"
